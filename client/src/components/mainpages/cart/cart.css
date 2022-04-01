@@ -1,0 +1,95 @@
+*{
+      font-family: 'Baloo 2', cursive;
+      max-width: 100%;
+  }
+  .cart-page{
+      margin: 80px auto;
+  }
+  table{
+      width: 100%;
+      border-collapse: collapse;
+  }
+  .item-info{
+      max-width: 380px;
+  }
+  .cart-info{
+      display:flex;
+      flex-wrap: wrap;
+  }
+  th{
+      text-align: left;
+      padding: 5px;
+      color: #fff;
+      background: tan;
+      font-weight: normal;
+      font-size: 18px;
+  }
+  td{
+      padding: 10px 5px;
+      font-size: 18px;
+  }
+  td input{
+      width: 40px;
+      height: 30px;
+      padding: 5px;
+  }
+  td button{
+      color: tan;
+      font-size: 20px;
+  }
+  td img{
+      max-width: 150px;
+      height: 150px;
+      margin-right: 10px;
+  }
+  .total-price{
+      display: flex;
+      justify-content: flex-end;
+  }
+  .total-price table{
+      border-top: solid 3px tan;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 10px;
+  }
+  td:last-child{
+      text-align: right; 
+  }
+  th:last-child{
+      text-align: right;
+  }
+  .btnBuy{
+      
+      border: 1px solid tan;
+      border-radius: 50px;
+      font-size: 20px;
+      background-color: #fff;
+      color: tan;
+      max-width: 400px;
+      width:100%;
+      height: 40px;
+      float: right;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      margin-right: 0px;
+  }
+  .btnBuy:hover{
+      border: 0px;
+      border-radius: 50px;
+      font-size: 20px;
+      background-color: tan;
+      color: #fff;
+      max-width: 400px;
+      width:100%;
+      float: right;
+      height: 40px;
+  }
+  .amount span {
+        color: crimson;
+        padding: 0 20px;
+  }
+  .amount button {
+        width: 40px;
+        height: 40px;
+        border:  1px solid tan;
+  }

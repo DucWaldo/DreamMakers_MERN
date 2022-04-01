@@ -1,0 +1,46 @@
+.detail {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 50px;
+        font-size: 150%;
+}
+.detail img {
+        max-width: 480px;
+        width: 100%;
+        margin: 20px;
+        height: 450px;
+        object-fit: contain;
+        display: block;
+        border: 2px solid black;
+        padding: 10px;
+        border-radius: 20px;
+}
+.box_detail {
+        max-width: 480px;
+        width: 100%;
+        margin: 20px;
+}
+.box_detail span {
+        color: red;
+        font-size: 35px;
+}
+.box_detail .cart {
+        background: gray;
+        color: white;
+        margin-top: 20px;
+        padding: 10px 25px;
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+}
+.box_detail p {
+        line-height: 1.5;
+        margin: 10px 0;
+        opacity: 1;
+        border: 2px solid black;
+        text-align: center;
+        border-radius: 10px;
+        padding: 10px;
+}

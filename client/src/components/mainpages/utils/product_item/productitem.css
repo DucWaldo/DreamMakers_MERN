@@ -1,0 +1,70 @@
+.product_card {
+    width: fit-content;
+    overflow: hidden;
+    height: fit-content;
+    padding: 15px;
+    box-shadow: 0 0 15px #ddd;
+    margin: 10px;
+    position: relative;
+    border-radius: 10px;
+}
+.product_card img {
+    width: 100%;
+    height: 300px;
+    display: block;
+    object-fit: cover;
+}
+.product_box h2 {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: black;
+}
+.product_card span {
+    color: red;
+    float: right;
+    font-size: 25px;
+}
+.product_box p {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    height: auto;
+    overflow: hidden;
+    color: gray;
+}
+.row_button {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.row_button a {
+    width: 50%;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 5px;
+}
+#button_buy {
+    background: red;
+    margin: 5px;
+    border-radius: 5px;
+}
+#button_view {
+    background: green;
+    margin: 5px;
+    border-radius: 5px;
+}
+.product_card input {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+}
