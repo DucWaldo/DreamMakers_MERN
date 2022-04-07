@@ -20,6 +20,7 @@ app.use("/user", require("./routers/user.router"));
 app.use("/api", require("./routers/brand.router"));
 app.use("/api", require("./routers/upload"));
 app.use("/api", require("./routers/product.router"));
+app.use("/api", require("./routers/payment.router"));
 
 //Connect to mongodb
 const URI = process.env.MONGODB_URL;

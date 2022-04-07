@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { GlobalState } from "../../../../GlobalState";
 
-export default function ButtonRender({ product }) {
+export default function ButtonRender({ product, deleteProduct }) {
     const state = useContext(GlobalState);
     const [isAdmin] = state.userAPI.isAdmin;
     const addCart = state.userAPI.addCart;
@@ -10,7 +10,7 @@ export default function ButtonRender({ product }) {
         <div className="row_button">
             {isAdmin ? (
                 <>
-                    <Link id="button_buy" to="#">
+                    <Link id="button_buy" to="#!" onClick={deleteProduct}>
                         Delete
                     </Link>
                     <Link id="button_view" to={`/edit_product/${product._id}`}>

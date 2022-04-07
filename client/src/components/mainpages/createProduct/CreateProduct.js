@@ -29,9 +29,11 @@ export default function CreateProduct() {
     const param = useParams();
     const [products] = state.productsAPI.products;
     const [onEdit, setOnEdit] = useState(false);
+    const [callback, setCallback] = state.productsAPI.callback;
 
     useEffect(() => {
         if (param.id) {
+            setOnEdit(true);
             products.forEach((product) => {
                 if (product._id === param.id) {
                     setProduct(product);
@@ -115,13 +117,25 @@ export default function CreateProduct() {
             if (!images) {
                 return alert("No image upload");
             }
-            await axios.post(
-                "/api/products",
-                { ...product, images },
-                {
-                    headers: { Authorization: token },
-                }
-            );
+
+            if (onEdit) {
+                await axios.put(
+                    `/api/products/${product._id}`,
+                    { ...product, images },
+                    {
+                        headers: { Authorization: token },
+                    }
+                );
+            } else {
+                await axios.post(
+                    "/api/products",
+                    { ...product, images },
+                    {
+                        headers: { Authorization: token },
+                    }
+                );
+            }
+            setCallback(!callback);
             setImages(false);
             setProduct(initoalState);
             history.push("/");
@@ -259,7 +273,7 @@ export default function CreateProduct() {
                         onChange={handleChangeInput}
                     ></input>
                 </div>
-                <button type="submit">Create</button>
+                <button type="submit">{onEdit ? "Update" : "Create"}</button>
             </form>
         </div>
     );

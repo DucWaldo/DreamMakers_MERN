@@ -17,7 +17,6 @@ export default function HistoryDetail() {
             });
         }
     }, [params.id, history]);
-    console.log(historyDetail);
     if (historyDetail.length === 0) {
         return null;
     }
