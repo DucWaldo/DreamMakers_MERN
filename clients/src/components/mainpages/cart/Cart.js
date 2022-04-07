@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { GlobalState } from "../../../GlobalState";
 import axios from "axios";
+import PaypalButton from "./PaypalButton";
 export default function Cart() {
     const state = useContext(GlobalState);
     const [cart, setCart] = state.userAPI.cart;
@@ -17,7 +18,7 @@ export default function Cart() {
         getTotal(total);
     }, [cart]);
 
-    const addToCart = async () => {
+    const addToCart = async (cart) => {
         await axios.patch(
             "/user/addcart",
             { cart },
@@ -34,7 +35,7 @@ export default function Cart() {
             }
         });
         setCart([...cart]);
-        addToCart();
+        addToCart(cart);
     };
 
     const decrement = (id) => {
@@ -46,7 +47,7 @@ export default function Cart() {
             }
         });
         setCart([...cart]);
-        addToCart();
+        addToCart(cart);
     };
 
     const removeProduct = (id) => {
@@ -57,8 +58,23 @@ export default function Cart() {
                 }
             });
             setCart([...cart]);
-            addToCart();
+            addToCart(cart);
         }
+    };
+    const tranSuccess = async (payment) => {
+        const { paymentID, address } = payment;
+
+        await axios.post(
+            "/api/payment",
+            { cart, paymentID, address },
+            {
+                headers: { Authorization: token },
+            }
+        );
+
+        setCart([]);
+        addToCart([]);
+        alert("You have successfully placed an order.");
     };
 
     if (cart.length === 0) {
@@ -69,9 +85,10 @@ export default function Cart() {
         );
     }
     return (
-        <div class="small-container cart-page">
+        <div className="cart-page">
             <table>
                 <tr>
+                    <th></th>
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
@@ -80,24 +97,18 @@ export default function Cart() {
                 {cart.map((product) => (
                     <tr key={product._id}>
                         <td>
-                            <div class="cart-info">
-                                <img src={product.images.url} alt=""></img>
-                                <div class="item-info">
-                                    <p>{product.product_id}</p>
-                                </div>
-                            </div>
+                            <img src={product.images.url} alt=""></img>
                         </td>
+                        <td>{product.product_id}</td>
                         <td>{product.price}</td>
                         <td>
                             <div className="amount">
                                 <button onClick={() => decrement(product._id)}>
-                                    {" "}
-                                    -{" "}
+                                    -
                                 </button>
                                 <span>{product.quantity}</span>
                                 <button onClick={() => increment(product._id)}>
-                                    {" "}
-                                    +{" "}
+                                    +
                                 </button>
                             </div>
                         </td>
@@ -113,23 +124,20 @@ export default function Cart() {
             <div class="total-price">
                 <table>
                     <tr>
-                        <td>Subtotal</td>
+                        <td>Subtotal (VND)</td>
                         <td>{total}</td>
                     </tr>
                     <tr>
-                        <td>Shipping</td>
-                        <td>- 0</td>
-                    </tr>
-                    <tr>
-                        <td>Total</td>
-                        <td>{total}</td>
+                        <td>Subtotal (USD)</td>
+                        <td>{(total / 23095).toFixed(2)}</td>
                     </tr>
                 </table>
             </div>
             <div>
-                <button type="submit" class="btnBuy">
-                    Go to checkout
-                </button>
+                <PaypalButton
+                    total={(total / 23095).toFixed(2)}
+                    tranSuccess={tranSuccess}
+                ></PaypalButton>
             </div>
         </div>
     );

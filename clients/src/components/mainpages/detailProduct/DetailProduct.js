@@ -7,6 +7,7 @@ export default function DetailProduct() {
     const params = useParams();
     const state = useContext(GlobalState);
     const [products] = state.productsAPI.products;
+    const addCart = state.userAPI.addCart;
     const [detailProduct, setDetailProduct] = useState([]);
     useEffect(() => {
         if (params) {
@@ -36,7 +37,11 @@ export default function DetailProduct() {
                     <p>Bảo hành: {detailProduct.insurance}</p>
                     <p>Chống nước: {detailProduct.waterproof}</p>
                     <p>Số lượng bán: {detailProduct.sold}</p>
-                    <Link to="/cart" className="cart">
+                    <Link
+                        to="/cart"
+                        className="cart"
+                        onClick={() => addCart(detailProduct)}
+                    >
                         Add to cart
                     </Link>
                 </div>

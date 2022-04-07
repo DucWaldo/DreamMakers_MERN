@@ -1,0 +1,42 @@
+.brand {
+      max-width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 30px auto;
+}
+.brand form {
+      width: 300px;
+      margin-bottom: 20px;
+}
+.brand label {
+      display: block;
+      font-weight: 700px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+}
+.brand input, button {
+      height: 35px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid tan;
+}
+.brand input {
+      width: 210px;
+}
+.brand button {
+      width: 75px;
+      background: tan;
+      color: white;
+      margin-left: 10px;
+}
+.brand .row {
+      min-width: 300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin: 10px;
+      border: 1px solid tan;
+}

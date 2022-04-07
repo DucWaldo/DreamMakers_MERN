@@ -1,11 +1,8 @@
-*{
-      font-family: 'Baloo 2', cursive;
-      max-width: 100%;
-  }
+
   .cart-page{
       margin: 80px auto;
   }
-  table{
+  .cart-page table{
       width: 100%;
       border-collapse: collapse;
   }
@@ -16,7 +13,7 @@
       display:flex;
       flex-wrap: wrap;
   }
-  th{
+  .cart-page th{
       text-align: left;
       padding: 5px;
       color: #fff;
@@ -24,20 +21,20 @@
       font-weight: normal;
       font-size: 18px;
   }
-  td{
+  .cart-page td{
       padding: 10px 5px;
       font-size: 18px;
   }
-  td input{
+  .cart-page td input{
       width: 40px;
       height: 30px;
       padding: 5px;
   }
-  td button{
+  .cart-page td button{
       color: tan;
       font-size: 20px;
   }
-  td img{
+  .cart-page td img{
       max-width: 150px;
       height: 150px;
       margin-right: 10px;
@@ -52,10 +49,10 @@
       max-width: 400px;
       margin-top: 10px;
   }
-  td:last-child{
+  .cart-page td:last-child{
       text-align: right; 
   }
-  th:last-child{
+  .cart-page th:last-child{
       text-align: right;
   }
   .btnBuy{

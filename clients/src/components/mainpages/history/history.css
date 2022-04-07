@@ -1,0 +1,23 @@
+.history-page {
+      overflow-x: auto;
+}
+.history-page h2, h3 {
+      text-align: center;
+      margin: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+}
+.history-page table {
+      margin: auto;
+      width: 100%;
+}
+.history-page table , .history-page tr, .history-page th, .history-page td {
+      border: 1px solid rgb(19, 17, 14);
+      border-collapse: collapse;
+      text-align: center;
+      padding: 10px;
+      text-transform: capitalize;
+}
+.history-page img {
+      max-width: 100px;
+}

@@ -14,9 +14,9 @@ export default function Header() {
 
     const logoutUser = async () => {
         await axios.get("/user/logout");
-        localStorage.clear();
         setIsAdmin(false);
         setIsLogged(false);
+        localStorage.removeItem("firstLogin");
         window.location.href = "/";
     };
 
@@ -101,7 +101,9 @@ export default function Header() {
                 ""
             ) : (
                 <div className="cart-icon">
-                    <span>{cart.length}</span>
+                    <span>
+                        {cart.reduce((acc, item) => acc + item.quantity, 0)}
+                    </span>
                     <Link to="/cart">
                         <img src={Cart} alt="" width="30"></img>
                     </Link>
