@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { GlobalState } from "../../../GlobalState";
 import axios from "axios";
 import PaypalButton from "./PaypalButton";
+import FormatVND from "../utils/formater/FormatVND";
+import FormatUSD from "../utils/formater/FormatUSD";
 export default function Cart() {
     const state = useContext(GlobalState);
     const [cart, setCart] = state.userAPI.cart;
@@ -100,7 +102,7 @@ export default function Cart() {
                             <img src={product.images.url} alt=""></img>
                         </td>
                         <td>{product.product_id}</td>
-                        <td>{product.price}</td>
+                        <td>{FormatVND(product.price)}</td>
                         <td>
                             <div className="amount">
                                 <button onClick={() => decrement(product._id)}>
@@ -113,7 +115,7 @@ export default function Cart() {
                             </div>
                         </td>
                         <td>
-                            <p>{product.price * product.quantity}</p>
+                            <p>{FormatVND(product.price * product.quantity)}</p>
                             <button onClick={() => removeProduct(product._id)}>
                                 REMOVE
                             </button>
@@ -125,11 +127,11 @@ export default function Cart() {
                 <table>
                     <tr>
                         <td>Subtotal (VND)</td>
-                        <td>{total}</td>
+                        <td>{FormatVND(total)}</td>
                     </tr>
                     <tr>
                         <td>Subtotal (USD)</td>
-                        <td>{(total / 23095).toFixed(2)}</td>
+                        <td>{FormatUSD(total / 23095)}</td>
                     </tr>
                 </table>
             </div>

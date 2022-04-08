@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { GlobalState } from "../../../GlobalState";
+import FormatVND from "../utils/formater/FormatVND";
 
 export default function HistoryDetail() {
     const state = useContext(GlobalState);
@@ -65,7 +66,7 @@ export default function HistoryDetail() {
                             </td>
                             <td>{item.product_id}</td>
                             <td>{item.quantity}</td>
-                            <td>{item.price * item.quantity}</td>
+                            <td>{FormatVND(item.price * item.quantity)}</td>
                         </tr>
                     ))}
                 </tbody>

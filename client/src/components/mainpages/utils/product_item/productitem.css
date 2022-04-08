@@ -1,5 +1,5 @@
 .product_card {
-    width: fit-content;
+    max-width: max-content;
     overflow: hidden;
     height: fit-content;
     padding: 15px;

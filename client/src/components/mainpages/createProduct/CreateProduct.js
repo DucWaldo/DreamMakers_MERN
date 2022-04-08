@@ -138,7 +138,7 @@ export default function CreateProduct() {
             setCallback(!callback);
             setImages(false);
             setProduct(initoalState);
-            history.push("/");
+            history("/");
         } catch (error) {
             alert(error.response.data.msg);
         }
