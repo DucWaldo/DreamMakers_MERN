@@ -3,6 +3,8 @@ import { GlobalState } from "../../../GlobalState";
 import ProductItem from "../utils/product_item/ProductItem";
 import Loading from "../utils/loading/Loading";
 import axios from "axios";
+import Filter from "../products/Filter";
+import ShowMore from "./ShowMore";
 
 export default function Products() {
     const state = useContext(GlobalState);
@@ -71,6 +73,9 @@ export default function Products() {
 
     return (
         <>
+            <div className="filter">
+                <Filter></Filter>
+            </div>
             {isAdmin && (
                 <div className="delete-all">
                     <span>Select All</span>
@@ -95,6 +100,7 @@ export default function Products() {
                     );
                 })}
             </div>
+            <ShowMore></ShowMore>
             {products.length === 0 && <Loading></Loading>}
         </>
     );

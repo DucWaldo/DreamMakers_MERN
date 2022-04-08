@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { GlobalState } from "../../../GlobalState";
 import ProductItem from "../utils/product_item/ProductItem";
+import FormatVND from "../utils/formater/FormatVND";
 
 export default function DetailProduct() {
     const params = useParams();
@@ -29,7 +30,7 @@ export default function DetailProduct() {
                 <div className="box_detail">
                     <h2>{detailProduct.product_id}</h2>
                     <h4>{detailProduct.title}</h4>
-                    <span>Giá bán: {detailProduct.price} vnd</span>
+                    <span>Giá bán: {FormatVND(detailProduct.price)} vnd</span>
                     <p>Thương hiệu: {detailProduct.brand}</p>
                     <p>Xuất sứ: {detailProduct.origin}</p>
                     <p>Giới tính: {detailProduct.gender}</p>

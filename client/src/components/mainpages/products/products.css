@@ -28,3 +28,25 @@
     text-transform: uppercase;
 }
 @import url("../utils/product_item/productitem.css");
+
+.filter_menu {
+    width: auto;
+    min-height: fit-content;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+.filter_menu select, .filter_menu input {
+    border: 1px solid tan;
+    outline: none;
+    height: 50px;
+    padding: 0 5px;
+}
+.filter_menu input {
+    flex: 1;
+    margin: 10px;
+    border-radius: 10px;
+}

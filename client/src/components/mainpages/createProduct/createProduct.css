@@ -72,7 +72,7 @@
       width: 100%;
       margin: 15px 0;
 }
-.create_product form input, textarea, select {
+.create_product form input, .create_product textarea, .create_product select {
       width: 100%;
       min-height: 50px;
       padding: 10px;
