@@ -50,3 +50,13 @@
     margin: 10px;
     border-radius: 10px;
 }
+.show_more {
+    text-align: center;
+}
+.show_more button {
+    height: fit-content;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid tan;
+    border-radius: 10px;
+}

@@ -6,7 +6,7 @@ export default function ShowMore() {
     const [page, setPage] = state.productsAPI.page;
     const [result] = state.productsAPI.result;
     return (
-        <div>
+        <div className="show_more">
             {result < page * 12 ? (
                 ""
             ) : (
