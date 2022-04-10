@@ -27,25 +27,27 @@ export default function HistoryDetail() {
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Address</th>
+                        <th>Email</th>
                         <th>Date Of Purchased</th>
-                        <th>Country Code</th>
+                        <th>Total Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{historyDetail.name}</td>
-                        <td>
-                            {historyDetail.address.line1 +
-                                " - " +
-                                historyDetail.address.city}
-                        </td>
+                        <td>{historyDetail.email}</td>
                         <td>
                             {new Date(
                                 historyDetail.createdAt
                             ).toLocaleDateString()}
                         </td>
-                        <td>{historyDetail.address.country_code}</td>
+                        <td>
+                            {FormatVND(
+                                historyDetail.cart.reduce((prev, item) => {
+                                    return prev + item.price * item.quantity;
+                                }, 0)
+                            )}
+                        </td>
                     </tr>
                 </tbody>
             </table>

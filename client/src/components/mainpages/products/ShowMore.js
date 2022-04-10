@@ -7,7 +7,7 @@ export default function ShowMore() {
     const [result] = state.productsAPI.result;
     return (
         <div className="show_more">
-            {result < page * 12 ? (
+            {result < page * 9 ? (
                 ""
             ) : (
                 <button onClick={() => setPage(page + 1)}>Show More</button>

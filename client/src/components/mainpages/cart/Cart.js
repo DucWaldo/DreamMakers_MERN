@@ -133,13 +133,13 @@ export default function Cart() {
                         <td>Subtotal (USD)</td>
                         <td>{FormatUSD(total / 23095)}</td>
                     </tr>
+                    <tr>
+                        <PaypalButton
+                            total={(total / 23095).toFixed(2)}
+                            tranSuccess={tranSuccess}
+                        ></PaypalButton>
+                    </tr>
                 </table>
-            </div>
-            <div>
-                <PaypalButton
-                    total={(total / 23095).toFixed(2)}
-                    tranSuccess={tranSuccess}
-                ></PaypalButton>
             </div>
         </div>
     );

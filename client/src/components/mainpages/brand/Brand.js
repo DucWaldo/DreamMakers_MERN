@@ -49,11 +49,13 @@ export default function Brand() {
 
     const deleteBrand = async (id) => {
         try {
-            const res = await axios.delete(`/api/brand/${id}`, {
-                headers: { Authorization: token },
-            });
-            alert(res.data.msg);
-            setCallback(!callback);
+            if (window.confirm("Do you want to delete this brand")) {
+                const res = await axios.delete(`/api/brand/${id}`, {
+                    headers: { Authorization: token },
+                });
+                alert(res.data.msg);
+                setCallback(!callback);
+            }
         } catch (error) {
             alert(error.response.data.msg);
         }

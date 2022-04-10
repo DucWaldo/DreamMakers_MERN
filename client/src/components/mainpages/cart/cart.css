@@ -1,10 +1,10 @@
 
   .cart-page{
-      margin: 80px auto;
+      overflow-x: auto;
   }
   .cart-page table{
-      width: 100%;
-      border-collapse: collapse;
+    margin: auto;
+    width: 100%;
   }
   .item-info{
       max-width: 380px;

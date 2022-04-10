@@ -1,124 +1,173 @@
-const { response } = require('express')
-const Products = require('../models/product.model')
+const { response } = require("express");
+const Products = require("../models/product.model");
 
-class APIfeatures{
+class APIfeatures {
     constructor(query, queryString) {
-        this.query = query
-        this.queryString = queryString
+        this.query = query;
+        this.queryString = queryString;
     }
     filtering() {
-        const queryObj = {...this.queryString} //queryString = req.query
+        const queryObj = { ...this.queryString }; //queryString = req.query
 
-       const excludedFields = ['page', 'sort', 'limit']
-       excludedFields.forEach(el => delete(queryObj[el]))
-       
-       let queryStr = JSON.stringify(queryObj)
-       queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
+        const excludedFields = ["page", "sort", "limit"];
+        excludedFields.forEach((el) => delete queryObj[el]);
 
-       this.query.find(JSON.parse(queryStr))
-         
-       return this;
+        let queryStr = JSON.stringify(queryObj);
+        queryStr = queryStr.replace(
+            /\b(gte|gt|lt|lte|regex)\b/g,
+            (match) => "$" + match
+        );
+
+        //    gte = greater than or equal
+        //    lte = lesser than or equal
+        //    lt = lesser than
+        //    gt = greater than
+
+        this.query.find(JSON.parse(queryStr));
+
+        return this;
     }
     sorting() {
-        if(this.queryString.sort) {
-            const sortBy = this.queryString.sort.split(',').join(' ')
-            this.query = this.query.sort(sortBy)
+        if (this.queryString.sort) {
+            const sortBy = this.queryString.sort.split(",").join(" ");
+            this.query = this.query.sort(sortBy);
         } else {
-            this.query = this.query.sort('-createdAt')
+            this.query = this.query.sort("-createdAt");
         }
-        return this
+        return this;
     }
     paginating() {
-        const page = this.queryString.page * 1 || 1
-        const limit = this.queryString.limit * 1 || 9
-        const skip = (page - 1) * limit
-        this.query = this.query.skip(skip).limit(limit)
-        return this
+        const page = this.queryString.page * 1 || 1;
+        const limit = this.queryString.limit * 1 || 9;
+        const skip = (page - 1) * limit;
+        this.query = this.query.skip(skip).limit(limit);
+        return this;
     }
 }
 
 const productController = {
-    getProducts: async(req, res) => {
+    getProducts: async (req, res) => {
         try {
             const features = new APIfeatures(Products.find(), req.query)
-            .filtering()
-            .sorting()
-            .paginating()
+                .filtering()
+                .sorting()
+                .paginating();
 
-            const products = await features.query
+            const products = await features.query;
 
             res.json({
-                status: 'success',
+                status: "success",
                 result: products.length,
-                products: products
-            })
+                products: products,
+            });
         } catch (error) {
             return res.status(500).json({
-                msg: error.message
-            })
+                msg: error.message,
+            });
         }
     },
-    createProducts: async(req, res) => {
+    createProducts: async (req, res) => {
         try {
-            const {product_id, price, title, images, brand, origin, gender, glass, insurance, waterproof} = req.body
+            const {
+                product_id,
+                price,
+                title,
+                images,
+                brand,
+                origin,
+                gender,
+                glass,
+                insurance,
+                waterproof,
+            } = req.body;
             if (!images) {
                 return res.status(400).json({
-                    msg: "No image upload"
-                })
+                    msg: "No image upload",
+                });
             }
             const product = await Products.findOne({
-                product_id
-            })
+                product_id,
+            });
             if (product) {
                 return res.status(400).json({
-                    msg: "This product already exists"
-                })
+                    msg: "This product already exists",
+                });
             }
             const newProduct = new Products({
-                product_id, price, title, images, brand, origin, gender, glass, insurance, waterproof
-            })
-            await newProduct.save()
-            res.json(newProduct)
+                product_id,
+                price,
+                title,
+                images,
+                brand,
+                origin,
+                gender,
+                glass,
+                insurance,
+                waterproof,
+            });
+            await newProduct.save();
+            res.json(newProduct);
         } catch (error) {
             return res.status(500).json({
-                msg: error.message
-            })
+                msg: error.message,
+            });
         }
     },
-    deleteProducts: async(req, res) => {
+    deleteProducts: async (req, res) => {
         try {
-            await Products.findByIdAndDelete(req.params.id)
+            await Products.findByIdAndDelete(req.params.id);
             res.json({
-                msg: "Deleted a product"
-            })
+                msg: "Deleted a product",
+            });
         } catch (error) {
             return res.status(500).json({
-                msg: error.message
-            })
+                msg: error.message,
+            });
         }
     },
-    updateProducts: async(req, res) => {
+    updateProducts: async (req, res) => {
         try {
-            const {price, title, images, brand, origin, gender, glass, insurance, waterproof} = req.body
-            if(!images) {
+            const {
+                price,
+                title,
+                images,
+                brand,
+                origin,
+                gender,
+                glass,
+                insurance,
+                waterproof,
+            } = req.body;
+            if (!images) {
                 return res.status(400).json({
-                    msg: "No image upload"
-                })
+                    msg: "No image upload",
+                });
             }
-            await Products.findByIdAndUpdate({
-                _id: req.params.id
-            }, {
-                price, title, images, brand, origin, gender, glass, insurance, waterproof
-            })
+            await Products.findByIdAndUpdate(
+                {
+                    _id: req.params.id,
+                },
+                {
+                    price,
+                    title,
+                    images,
+                    brand,
+                    origin,
+                    gender,
+                    glass,
+                    insurance,
+                    waterproof,
+                }
+            );
             res.json({
-                msg: "Updated a product"
-            })
+                msg: "Updated a product",
+            });
         } catch (error) {
             return res.status(500).json({
-                msg: error.message
-            })
+                msg: error.message,
+            });
         }
-    }
-}
+    },
+};
 
-module.exports = productController
+module.exports = productController;

@@ -1,63 +1,67 @@
-const Brand = require('../models/brand.model')
+const Brand = require("../models/brand.model");
+const Products = require("../models/product.model");
 
 const brandController = {
-    getBrands: async(req, res) => {
+    getBrands: async (req, res) => {
         try {
-            const brands = await Brand.find()
-            res.json(brands)
+            const brands = await Brand.find();
+            res.json(brands);
         } catch (error) {
             return res.status(500).json({
-                msg: error.message
-            })
+                msg: error.message,
+            });
         }
     },
-    createBrand: async(req, res) => {
+    createBrand: async (req, res) => {
         try {
-            const {name} = req.body;
-            const brand = await Brand.findOne({name})
+            const { name } = req.body;
+            const brand = await Brand.findOne({ name });
             if (brand) {
                 return res.status(400).json({
-                    msg: "This brand already exists"
-                })
+                    msg: "This brand already exists",
+                });
             }
-            const newBrand = new Brand({name})
-            await newBrand.save()
-            res.json('Create a Brand')
+            const newBrand = new Brand({ name });
+            await newBrand.save();
+            res.json({ msg: "Create a Brand" });
         } catch (error) {
             return res.status(500).json({
-                msg: error.message
-            })
+                msg: error.message,
+            });
         }
     },
-    deleteBrand: async(req, res) => {
+    deleteBrand: async (req, res) => {
         try {
-            await Brand.findByIdAndDelete(req.params.id)
+            await Brand.findByIdAndDelete(req.params.id);
             res.json({
-                msg: "Deleted a Brand"
-            })
+                msg: "Deleted a Brand",
+            });
         } catch (error) {
             return res.status(500).json({
-                msg: error.message
-            })
+                msg: error.message,
+            });
         }
     },
-    updateBrand: async(req, res) => {
+    updateBrand: async (req, res) => {
         try {
-            const {name} = req.body
-            await Brand.findOneAndUpdate({
-                id: req.params.id
-            }, {
-                name
-            })
+            const { name } = req.body;
+            await Brand.findOneAndUpdate(
+                {
+                    _id: req.params.id,
+                },
+                {
+                    name,
+                }
+            );
             res.json({
-                msg: "Updated a brand"
-            })
+                msg: "Updated a brand",
+            });
         } catch (error) {
             return res.status(500).json({
-                msg: error.message
-            })
+                msg: error.message,
+            });
         }
-    }
-}
+    },
+};
 
-module.exports = brandController
+module.exports = brandController;

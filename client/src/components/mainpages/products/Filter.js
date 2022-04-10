@@ -35,7 +35,7 @@ export default function Filter() {
                 placeholder="Search something-->"
                 onChange={(e) => setSearch(e.target.value)}
             ></input>
-            <div className="row">
+            <div className="sort">
                 <span>Sort by: </span>
                 <select value={sort} onChange={(e) => setSort(e.target.value)}>
                     <option value="">---Newest---</option>
