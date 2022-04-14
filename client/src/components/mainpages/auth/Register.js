@@ -22,10 +22,16 @@ export default function Register() {
 
     const registerSubmit = async (e) => {
         e.preventDefault();
+        var password = document.getElementById("password").value;
+        var confirm = document.getElementById("confirm-password").value;
         try {
-            await axios.post("/user/register", { ...user });
-            localStorage.setItem("firstLogin", true);
-            window.location.href = "/";
+            if (password === confirm) {
+                await axios.post("/user/register", { ...user });
+                localStorage.setItem("firstLogin", true);
+                window.location.href = "/";
+            } else {
+                return alert("Password don't match");
+            }
         } catch (error) {
             alert(error.response.data.msg);
         }
@@ -52,12 +58,20 @@ export default function Register() {
                     onChange={onChangeInput}
                 ></input>
                 <input
+                    id="password"
                     type="password"
                     name="password"
                     required
                     placeholder="Password"
                     value={user.password}
                     onChange={onChangeInput}
+                ></input>
+                <input
+                    id="confirm-password"
+                    type="password"
+                    name="confrim-password"
+                    required
+                    placeholder="Confrim Password"
                 ></input>
                 <select
                     name="gender"
