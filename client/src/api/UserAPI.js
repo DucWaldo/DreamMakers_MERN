@@ -6,6 +6,7 @@ export default function UserAPI(token) {
     const [isAdmin, setIsAdmin] = useState(false);
     const [cart, setCart] = useState([]);
     const [history, setHistory] = useState([]);
+    const [userInfor, setUserInfor] = useState([]);
 
     useEffect(() => {
         if (token) {
@@ -15,6 +16,7 @@ export default function UserAPI(token) {
                         headers: { Authorization: token },
                     });
                     setIsLogges(true);
+                    setUserInfor(res.data);
                     if (res.data.position === 1) {
                         setIsAdmin(true);
                     } else {
@@ -57,5 +59,6 @@ export default function UserAPI(token) {
         cart: [cart, setCart],
         addCart: addCart,
         history: [history, setHistory],
+        userInfor: [userInfor, setUserInfor],
     };
 }

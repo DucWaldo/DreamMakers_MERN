@@ -12,6 +12,7 @@ export default function Header() {
     const [isAdmin, setIsAdmin] = state.userAPI.isAdmin;
     const [cart] = state.userAPI.cart;
     const [menu, setMenu] = useState(false);
+    const [userInfor] = state.userAPI.userInfor;
 
     const logoutUser = async () => {
         await axios.get("/user/logout");
@@ -37,7 +38,7 @@ export default function Header() {
         return (
             <>
                 <li>
-                    <Link to="/history">History</Link>
+                    <Link to="/history">{userInfor.name}</Link>
                 </li>
                 <li>
                     <Link to="/" onClick={logoutUser}>

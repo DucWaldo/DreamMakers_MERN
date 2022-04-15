@@ -49,17 +49,20 @@ export default function DetailProduct() {
             </div>
             <div>
                 <h2>Gợi ý sản phẩm cùng nhãn hiệu</h2>
-                <div className="products">
-                    {products.map((product) => {
-                        return product.brand === detailProduct.brand &&
-                            product.product_id !== detailProduct.product_id ? (
-                            <ProductItem
-                                key={product._id}
-                                product={product}
-                            ></ProductItem>
-                        ) : null;
-                    })}
-                </div>
+                {
+                    <div className="products">
+                        {products.map((product) => {
+                            return product.brand === detailProduct.brand &&
+                                product.product_id !==
+                                    detailProduct.product_id ? (
+                                <ProductItem
+                                    key={product._id}
+                                    product={product}
+                                ></ProductItem>
+                            ) : null;
+                        })}
+                    </div>
+                }
             </div>
         </>
     );

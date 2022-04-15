@@ -21,3 +21,11 @@
 .history-page img {
       max-width: 100px;
 }
+.history-user {
+      font-size: 20px;
+      border: 1px tan solid;
+      margin-top: 10px;
+}
+.history-user td {
+      padding: 10px;
+}
